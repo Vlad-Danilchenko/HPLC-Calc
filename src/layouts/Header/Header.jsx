@@ -1,4 +1,4 @@
-import { Container, Img, NavBox } from "./Header.styled";
+import { Container, Img, NavBox } from "./Header.styled.js";
 import logo from "../../assets/img/burger-menu.svg";
 
 export const Header = () => {

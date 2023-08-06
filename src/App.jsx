@@ -1,10 +1,12 @@
 import "./App.css";
-import { Header } from "./components/Header/Header";
+import { Header } from "./layouts/Header/Header";
+import {Main} from "./layouts/Main/Main.jsx";
 
 function App() {
   return (
     <>
       <Header />
+	    <Main />
     </>
   );
 }
