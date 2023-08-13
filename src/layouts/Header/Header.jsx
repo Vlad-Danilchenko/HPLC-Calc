@@ -1,5 +1,6 @@
-import { Container, Img, NavBox } from "./Header.styled.js";
-import logo from "../../assets/img/burger-menu.svg";
+import BurgerMenu from "../../components/BurgerMenu/BurgerMenu.jsx";
+import { Container, NavBox } from "./Header.styled.js";
+
 
 export const Header = () => {
   return (
@@ -7,7 +8,7 @@ export const Header = () => {
       <Container>
         <NavBox>
           <a>HPLC</a>
-          <Img src={logo} />
+          <BurgerMenu/>
         </NavBox>
       </Container>
     </header>
