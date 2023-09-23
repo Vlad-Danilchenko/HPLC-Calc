@@ -10,12 +10,13 @@ const BurgerMenu = () => {
   const handleClic = () => {
     setIsOpen((state) => !state);
   };
+
   return (
     <div>
       {/* <button type="button" onClick={handleClic}> */}
       <Img onClick={handleClic} src={burgerMenuImg} />
       {/* </button> */}
-      {isOpen && <Modal isOpen={handleClic} />}
+      {/* {isOpen && <Modal isOpen={handleClic} />} */}
     </div>
   );
 };
