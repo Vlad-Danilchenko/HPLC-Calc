@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "name": "Азот, вільний від кисню.",
+    "description": "Азот Р очищують від кисню пропусканням крізь розчин nірогалолу лужний.",
+    "characteristics": null
+  },
+  {
+    "id": "2",
+    "name": "Азот для хроматоrрафії. ",
+    "description": "Містить не менше 99.95 % (об/об) N<sub>2</sub>",
+    "characteristics": null
+  },
+  {
+    "id": "",
+    "name": "Алюмінію оксид нейтральний",
+    "description": "АI<sub>2</subО<sub>3</sub",
+    "characteristics": {
+      "firs": "Гранульований порошок білого кольору"
+    }
+  },
+  {
+    "id": "",
+    "name": "",
+    "description": ""
+  },
+  {
+    "id": "",
+    "name": "",
+    "description": ""
+  },
+  {
+    "id": "",
+    "name": "",
+    "description": ""
+  },
+  {
+    "id": "",
+    "name": "",
+    "description": ""
+  },
+  {
+    "id": "",
+    "name": "",
+    "description": ""
+  }
+]
