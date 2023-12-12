@@ -1,13 +1,31 @@
 import { useEffect, useState } from "react";
 import { FormBtn, StyledInput, StyledLabel, Text } from "./WaterCounter.styled";
+import { CustomKeyboard } from "../CustomKeyboard/CustomKeyboard";
 
 export const WaterCounter = () => {
   const [formState, setFormState] = useState({ first: "", second: "" });
   const [result, setResult] = useState();
 
-  const handleChange = (e) => {
-    setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const [keyboardValue, setKeyboardValue] = useState({ name: "", number: "" });
+  const [isVisible, setIsVisible] = useState(false);
+
+  // const handleChange = (e) => {
+  //   setFormState((prev) => ({ ...prev, [e.target.name]: keyboardValue }));
+  // };
+  const handleFocusInput = (e) => {
+    setIsVisible(true);
+    setKeyboardValue({
+      number: [formState[e.target.name]],
+      name: e.target.name,
+    });
   };
+
+  useEffect(() => {
+    setFormState((prev) => ({
+      ...prev,
+      [keyboardValue.name]: [keyboardValue.number],
+    }));
+  }, [keyboardValue.name, keyboardValue.number]);
 
   // const formSubmit = () => {
   //   const { first, second } = formState;
@@ -48,22 +66,32 @@ export const WaterCounter = () => {
         <StyledLabel>
           the first test:
           <StyledInput
+            inputMode="none"
             value={formState.first}
             name="first"
-            onChange={handleChange}
+            onFocus={handleFocusInput}
+            // onChange={handleChange}
           />
         </StyledLabel>
         <StyledLabel>
           the second test:
           <StyledInput
+            inputMode="none"
             value={formState.second}
             name="second"
-            onChange={handleChange}
+            onFocus={handleFocusInput}
+
+            // onChange={handleChange}
           />
         </StyledLabel>
         {/* <FormBtn type="submit">Submit</FormBtn> */}
       </form>
       <p style={styles}>Your result: {result}%</p>
+
+      <CustomKeyboard
+        setOutputValue={setKeyboardValue}
+        keyboardValue={keyboardValue}
+      />
     </>
   );
 };
