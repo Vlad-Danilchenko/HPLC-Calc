@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
-import { FormBtn, StyledInput, StyledLabel, Text } from "./WaterCounter.styled";
+import {
+  FormBtn,
+  ResultText,
+  StyledInput,
+  StyledLabel,
+  Text,
+} from "./WaterCounter.styled";
 import { CustomKeyboard } from "../CustomKeyboard/CustomKeyboard";
+import Modal from "../Modal/Modal";
 
 export const WaterCounter = () => {
-  const [formState, setFormState] = useState({ first: "", second: "" });
-  const [result, setResult] = useState();
+  const [formState, setFormState] = useState({ first: 0, second: 0 });
+  const [result, setResult] = useState(0);
 
   const [keyboardValue, setKeyboardValue] = useState({ name: "", number: "" });
   const [isVisible, setIsVisible] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  // const handleChange = (e) => {
-  //   setFormState((prev) => ({ ...prev, [e.target.name]: keyboardValue }));
-  // };
+  const toggleModal = () => {
+    setShowModal((state) => !state);
+  };
+
   const handleFocusInput = (e) => {
-    setIsVisible(true);
+    setShowModal((state) => !state);
     setKeyboardValue({
       number: [formState[e.target.name]],
       name: e.target.name,
@@ -27,17 +36,6 @@ export const WaterCounter = () => {
     }));
   }, [keyboardValue.name, keyboardValue.number]);
 
-  // const formSubmit = () => {
-  //   const { first, second } = formState;
-  //   const firstNumb = Number(first);
-  //   const seconsdNumb = Number(second);
-  //   const sum = firstNumb + seconsdNumb;
-  //   const arithmeticMean = sum / 2;
-  //   const res = ((firstNumb - seconsdNumb) / arithmeticMean) * 100;
-
-  //   setResult(res);
-  // };
-
   useEffect(() => {
     const { first, second } = formState;
     const firstNumb = Number(first);
@@ -46,9 +44,8 @@ export const WaterCounter = () => {
     const arithmeticMean = sum / 2;
     const res = ((firstNumb - seconsdNumb) / arithmeticMean) * 100;
 
-    setResult(res);
+    setResult(Math.abs(res.toFixed(2)));
   }, [formState]);
-  // console.log(result);
 
   const styles = {
     color: "orange",
@@ -86,12 +83,16 @@ export const WaterCounter = () => {
         </StyledLabel>
         {/* <FormBtn type="submit">Submit</FormBtn> */}
       </form>
-      <p style={styles}>Your result: {result}%</p>
+      {result && <ResultText>Your result: {result}%</ResultText>}
 
-      <CustomKeyboard
-        setOutputValue={setKeyboardValue}
-        keyboardValue={keyboardValue}
-      />
+      {showModal && (
+        <Modal isOpen={toggleModal}>
+          <CustomKeyboard
+            setOutputValue={setKeyboardValue}
+            keyboardValue={keyboardValue}
+          />
+        </Modal>
+      )}
     </>
   );
 };

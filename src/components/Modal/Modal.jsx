@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { Children, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Backdrop, BodyModal } from "./Modal.styled";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const Modal = ({ isOpen }) => {
+const Modal = ({ isOpen, children }) => {
   useEffect(() => {
     const handleKeydown = (e) => {
       if (e.code === "Escape") {
@@ -26,11 +26,7 @@ const Modal = ({ isOpen }) => {
   return createPortal(
     <>
       <Backdrop onClick={handleBackdropClick}>
-        <BodyModal>
-          <button type="button" onClick={isOpen}>
-            <span>X</span>
-          </button>
-        </BodyModal>
+        <BodyModal>{children}</BodyModal>
       </Backdrop>
     </>,
     modalRoot

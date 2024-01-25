@@ -48,3 +48,12 @@ export const FormBtn = styled(Button)`
   background: #7b6682;
   cursor: pointer;
 `;
+
+export const ResultText = styled.p`
+  color: orange;
+  margin-top: 16px;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+`;

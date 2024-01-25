@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { KeyboardBox, KeyboardBtn, Keyboardli } from "./CustomKeyboard.styled";
+import {
+  KeyboardBox,
+  KeyboardBtn,
+  KeyboardInput,
+  Keyboardli,
+} from "./CustomKeyboard.styled";
 
 export const CustomKeyboard = ({ setOutputValue, keyboardValue }) => {
   const keynumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0];
@@ -41,9 +46,9 @@ export const CustomKeyboard = ({ setOutputValue, keyboardValue }) => {
 
   return (
     <div>
-      <div>
+      <KeyboardInput>
         <p>{output}</p>
-      </div>
+      </KeyboardInput>
       <KeyboardBox>
         {keynumber.map((item) => (
           <Keyboardli key={item}>
