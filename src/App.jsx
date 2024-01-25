@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<StubPage />} />
-          <Route path="/waterCounter" element={<WaterCalcPage />} />
+          <Route path="waterCounter" element={<WaterCalcPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
