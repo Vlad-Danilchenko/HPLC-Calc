@@ -10,7 +10,7 @@ export const StubContainer = styled.div`
 export const Text = styled.p`
   color: #fffbff;
   font-family: Inter;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.33;

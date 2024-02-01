@@ -31,11 +31,8 @@ export const CustomKeyboard = ({ setOutputValue, keyboardValue }) => {
     //   }));
     // }
   };
-  console.log(keyboardValue);
   useEffect(() => {
     setOutputValue((prev) => {
-      console.log(prev.name);
-      console.log(keyboardValue);
       if (prev.name !== keyboardValue.name) {
         console.log(output);
         setOutput("0");
