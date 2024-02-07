@@ -1,11 +1,11 @@
 import { useState } from "react";
-import {
-  StyledInput,
-  StyledLabel,
-} from "../../WaterCounter/WaterCounter.styled";
 import Modal from "../../Modal/Modal";
 import { CustomKeyboard } from "../../CustomKeyboard/CustomKeyboard";
-import { InputFirstStepForm } from "./FirstStepForm.styled";
+import {
+  FormText,
+  InputFirstStepForm,
+  LableMPhForm,
+} from "./FirstStepForm.styled";
 
 export const FirstStepForm = () => {
   const [keyboardValue, setKeyboardValue] = useState({
@@ -33,41 +33,44 @@ export const FirstStepForm = () => {
           // formSubmit();
         }}
       >
-        <StyledLabel>
-          Вкажи кількість серій
+        <LableMPhForm>
+          Вкажи кількість серій:
           <InputFirstStepForm
+            inputMode="none"
             type="number"
             name="numberOfSeries"
             onFocus={handleFocusInput}
             value={keyboardValue.number}
           />
-        </StyledLabel>
-        <p>Обери програму хроматографування:</p>
-        <StyledLabel>
-          isocratic
-          <input type="radio" name="typeOfFlow" value="isocratic" checked />
-        </StyledLabel>
-        <StyledLabel>
-          gradient
-          <input type="radio" name="typeOfFlow" value="gradient" />
-        </StyledLabel>
-        <p>Вибери з передіку свої показники:</p>
-        <StyledLabel>
+        </LableMPhForm>
+        <FormText>Обери програму хроматографування:</FormText>
+        <div>
+          <LableMPhForm>
+            <input type="radio" name="typeOfFlow" value="isocratic" checked />
+            Isocratic
+          </LableMPhForm>
+          <LableMPhForm>
+            <input type="radio" name="typeOfFlow" value="gradient" />
+            Gradient
+          </LableMPhForm>
+        </div>
+        <FormText>Вибери з передіку свої показники:</FormText>
+        <LableMPhForm>
           <input type="checkbox" name="exponent" value="impurity" />
           Impurity
-        </StyledLabel>
-        <StyledLabel>
+        </LableMPhForm>
+        <LableMPhForm>
           <input type="checkbox" name="exponent" value="assay" />
           Assay
-        </StyledLabel>
-        <StyledLabel>
+        </LableMPhForm>
+        <LableMPhForm>
           <input type="checkbox" name="exponent" value="dissolution" />
           Dissolution
-        </StyledLabel>
-        <StyledLabel>
+        </LableMPhForm>
+        <LableMPhForm>
           <input type="checkbox" name="exponent" value="uniformity" />
           Uniformity of dosage
-        </StyledLabel>
+        </LableMPhForm>
       </form>
       {showModal && (
         <Modal isOpen={toggleModal}>

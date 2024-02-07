@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const StubContainer = styled.div`
   border-radius: 10px;
   background: #47364c;
-  padding: 22px;
+  padding: 12px;
 `;
 
 export const Text = styled.p`
