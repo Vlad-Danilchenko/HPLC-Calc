@@ -7,7 +7,12 @@ import {
   LableMPhForm,
 } from "./FirstStepForm.styled";
 
-export const FirstStepForm = () => {
+export const FirstStepForm = ({
+  step,
+  setStep,
+  mobPhaseForm,
+  setMobPhaseForm,
+}) => {
   const [keyboardValue, setKeyboardValue] = useState({
     name: "",
     number: "1",
@@ -17,6 +22,9 @@ export const FirstStepForm = () => {
   const toggleModal = () => {
     setShowModal((state) => !state);
   };
+
+  const exponentArray = [];
+
   const handleFocusInput = (e) => {
     setShowModal((state) => !state);
     //  setKeyboardValue({
@@ -25,12 +33,28 @@ export const FirstStepForm = () => {
     //  });
   };
 
+  const handleCheckboxChange = (e) => {
+    const value = e.target.value;
+    if (e.target.checked) {
+      exponentArray.push(e.target.value);
+      console.log(exponentArray);
+    } else {
+      const idxValue = exponentArray.indexOf(value);
+      exponentArray.splice(idxValue, 1);
+      console.log(exponentArray);
+    }
+  };
+
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          // formSubmit();
+          setStep("second");
+          setMobPhaseForm((prev) => ({
+            ...prev,
+            exponent: [...exponentArray],
+          }));
         }}
       >
         <LableMPhForm>
@@ -56,19 +80,39 @@ export const FirstStepForm = () => {
         </div>
         <FormText>Вибери з передіку свої показники:</FormText>
         <LableMPhForm>
-          <input type="checkbox" name="exponent" value="impurity" />
+          <input
+            type="checkbox"
+            name="exponent"
+            value="impurity"
+            onChange={handleCheckboxChange}
+          />
           Impurity
         </LableMPhForm>
         <LableMPhForm>
-          <input type="checkbox" name="exponent" value="assay" />
+          <input
+            type="checkbox"
+            name="exponent"
+            value="assay"
+            onChange={handleCheckboxChange}
+          />
           Assay
         </LableMPhForm>
         <LableMPhForm>
-          <input type="checkbox" name="exponent" value="dissolution" />
+          <input
+            type="checkbox"
+            name="exponent"
+            value="dissolution"
+            onChange={handleCheckboxChange}
+          />
           Dissolution
         </LableMPhForm>
         <LableMPhForm>
-          <input type="checkbox" name="exponent" value="uniformity" />
+          <input
+            type="checkbox"
+            name="exponent"
+            value="uniformity"
+            onChange={handleCheckboxChange}
+          />
           Uniformity of dosage
         </LableMPhForm>
       </form>
