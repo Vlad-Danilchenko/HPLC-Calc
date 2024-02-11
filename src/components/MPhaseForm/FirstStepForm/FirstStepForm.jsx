@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../Modal/Modal";
 import { CustomKeyboard } from "../../CustomKeyboard/CustomKeyboard";
 import {
@@ -6,6 +6,7 @@ import {
   InputFirstStepForm,
   LableMPhForm,
 } from "./FirstStepForm.styled";
+import { BtnForm } from "../BtnForm/BtnForm";
 
 export const FirstStepForm = ({
   step,
@@ -15,7 +16,7 @@ export const FirstStepForm = ({
 }) => {
   const [keyboardValue, setKeyboardValue] = useState({
     name: "",
-    number: "1",
+    number: 1,
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -27,22 +28,27 @@ export const FirstStepForm = ({
 
   const handleFocusInput = (e) => {
     setShowModal((state) => !state);
-    //  setKeyboardValue({
-    //    number: [formState[e.target.name]],
-    //    name: e.target.name,
-    //  });
   };
+
+  useEffect(() => {
+    setMobPhaseForm((prev) => ({
+      ...prev,
+      numberOfSeries: keyboardValue.number,
+    }));
+  }, [keyboardValue.number]);
 
   const handleCheckboxChange = (e) => {
     const value = e.target.value;
     if (e.target.checked) {
       exponentArray.push(e.target.value);
-      console.log(exponentArray);
     } else {
       const idxValue = exponentArray.indexOf(value);
       exponentArray.splice(idxValue, 1);
-      console.log(exponentArray);
     }
+  };
+
+  const handleChange = (e) => {
+    setMobPhaseForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -65,20 +71,31 @@ export const FirstStepForm = ({
             name="numberOfSeries"
             onFocus={handleFocusInput}
             value={keyboardValue.number}
+            onChange={handleChange}
           />
         </LableMPhForm>
         <FormText>Обери програму хроматографування:</FormText>
         <div>
           <LableMPhForm>
-            <input type="radio" name="typeOfFlow" value="isocratic" checked />
+            <input
+              type="radio"
+              name="typeOfFlow"
+              value="isocratic"
+              onChange={handleChange}
+            />
             Isocratic
           </LableMPhForm>
           <LableMPhForm>
-            <input type="radio" name="typeOfFlow" value="gradient" />
+            <input
+              type="radio"
+              name="typeOfFlow"
+              value="gradient"
+              onChange={handleChange}
+            />
             Gradient
           </LableMPhForm>
         </div>
-        <FormText>Вибери з передіку свої показники:</FormText>
+        <FormText>Вибери з переліку свої показники:</FormText>
         <LableMPhForm>
           <input
             type="checkbox"
@@ -115,6 +132,7 @@ export const FirstStepForm = ({
           />
           Uniformity of dosage
         </LableMPhForm>
+        <BtnForm step={step} />
       </form>
       {showModal && (
         <Modal isOpen={toggleModal}>
