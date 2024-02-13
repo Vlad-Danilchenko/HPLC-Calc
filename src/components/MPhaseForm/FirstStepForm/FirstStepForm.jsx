@@ -132,7 +132,7 @@ export const FirstStepForm = ({
           />
           Uniformity of dosage
         </LableMPhForm>
-        <BtnForm step={step} />
+        <BtnForm step={step} setStep={setStep} />
       </form>
       {showModal && (
         <Modal isOpen={toggleModal}>
