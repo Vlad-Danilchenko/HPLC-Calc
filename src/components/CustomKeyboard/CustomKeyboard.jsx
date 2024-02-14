@@ -37,7 +37,7 @@ export const CustomKeyboard = ({ setOutputValue, keyboardValue }) => {
         console.log(output);
         setOutput("0");
       }
-      return { ...prev, number: output };
+      return { ...prev, number: Number(output) };
     });
   }, [output, setOutputValue]);
 

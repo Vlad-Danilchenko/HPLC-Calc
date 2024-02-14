@@ -25,9 +25,11 @@ export const BtnForm = ({ step, setStep }) => {
   };
   return (
     <BtnBox>
-      <BtnNext type="submit">
-        <NextIconBtn />
-      </BtnNext>
+      {step !== "finish" && (
+        <BtnNext type="submit">
+          <NextIconBtn />
+        </BtnNext>
+      )}
       {step !== "first" && (
         <BtnBack type="button" onClick={handleBack}>
           <BackIconBtn />

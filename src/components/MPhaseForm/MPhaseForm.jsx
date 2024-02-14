@@ -3,8 +3,12 @@ import { FirstStepForm } from "./FirstStepForm/FirstStepForm";
 import { MPhContainer } from "./MPhaseForm.styled";
 import { SecondStepForm } from "./SecondStepForm/SecondStepForm";
 
-export const MPhaseForm = ({ mobPhaseForm, setMobPhaseForm }) => {
-  const [step, setStep] = useState("first");
+export const MPhaseForm = ({
+  step,
+  setStep,
+  mobPhaseForm,
+  setMobPhaseForm,
+}) => {
   return (
     <MPhContainer>
       {step === "first" && (

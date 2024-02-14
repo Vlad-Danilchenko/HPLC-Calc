@@ -16,7 +16,7 @@ export const FirstStepForm = ({
 }) => {
   const [keyboardValue, setKeyboardValue] = useState({
     name: "",
-    number: 1,
+    number: 0,
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +24,7 @@ export const FirstStepForm = ({
     setShowModal((state) => !state);
   };
 
-  const exponentArray = [];
+  const [exponentArray, setExponentArray] = useState([]);
 
   const handleFocusInput = (e) => {
     setShowModal((state) => !state);
@@ -40,10 +40,10 @@ export const FirstStepForm = ({
   const handleCheckboxChange = (e) => {
     const value = e.target.value;
     if (e.target.checked) {
-      exponentArray.push(e.target.value);
+      setExponentArray((prev) => [...prev, value]);
     } else {
       const idxValue = exponentArray.indexOf(value);
-      exponentArray.splice(idxValue, 1);
+      setExponentArray((prev) => prev.splice(idxValue, 1));
     }
   };
 
@@ -60,6 +60,7 @@ export const FirstStepForm = ({
           setMobPhaseForm((prev) => ({
             ...prev,
             exponent: [...exponentArray],
+            typeOfFlow: "isocratic",
           }));
         }}
       >
@@ -82,10 +83,11 @@ export const FirstStepForm = ({
               name="typeOfFlow"
               value="isocratic"
               onChange={handleChange}
+              checked
             />
             Isocratic
           </LableMPhForm>
-          <LableMPhForm>
+          {/* <LableMPhForm>
             <input
               type="radio"
               name="typeOfFlow"
@@ -93,7 +95,7 @@ export const FirstStepForm = ({
               onChange={handleChange}
             />
             Gradient
-          </LableMPhForm>
+          </LableMPhForm> */}
         </div>
         <FormText>Вибери з переліку свої показники:</FormText>
         <LableMPhForm>
