@@ -47,10 +47,6 @@ export const WaterCounter = () => {
     setResult(Math.abs(res.toFixed(2)));
   }, [formState]);
 
-  const styles = {
-    color: "orange",
-  };
-
   return (
     <>
       <Text>Please enter the result of...</Text>
