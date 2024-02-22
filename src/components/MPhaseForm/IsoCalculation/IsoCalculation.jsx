@@ -74,7 +74,7 @@ export const IsoCalculation = ({
   return (
     <MPhContainer>
       <ResultText>
-        Мінамальна кількість фази для експерименту: {result} мл.
+        Мінімальна к-сть фази для експерименту: {result} мл.
       </ResultText>
       <BtnForm step={step} setStep={setStep} />
     </MPhContainer>

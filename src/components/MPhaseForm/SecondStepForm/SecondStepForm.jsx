@@ -7,6 +7,7 @@ import {
 import Modal from "../../Modal/Modal";
 import { CustomKeyboard } from "../../CustomKeyboard/CustomKeyboard";
 import { useEffect, useState } from "react";
+import { BorderForm, BorderLable } from "./SecondStepForm.styled";
 
 export const SecondStepForm = ({
   step,
@@ -70,7 +71,8 @@ export const SecondStepForm = ({
           />
         </LableMPhForm>
         {mobPhaseForm.exponent.includes("impurity") && (
-          <>
+          <BorderForm>
+            <BorderLable>Impurity</BorderLable>
             <LableMPhForm>
               Вкажи к-сть RS на короткому методі:
               <InputFirstStepForm
@@ -121,7 +123,7 @@ export const SecondStepForm = ({
                 value={formState.timeOfTS}
               />
             </LableMPhForm>
-          </>
+          </BorderForm>
         )}
         {(mobPhaseForm.exponent.includes("assay") ||
           mobPhaseForm.exponent.includes("dissolution") ||
