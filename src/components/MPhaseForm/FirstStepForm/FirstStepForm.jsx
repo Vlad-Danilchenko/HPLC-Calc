@@ -68,7 +68,7 @@ export const FirstStepForm = ({
           Вкажи кількість серій:
           <InputFirstStepForm
             inputMode="none"
-            type="number"
+            // type="number"
             name="numberOfSeries"
             onFocus={handleFocusInput}
             value={keyboardValue.number}
