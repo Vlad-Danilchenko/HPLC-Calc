@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { BtnForm } from "../BtnForm/BtnForm";
-import { GradTableInput, GradTableRow } from "./GradientPhaseForm.styled";
+import {
+  GradBtnBox,
+  GradTableBtn,
+  GradTableInput,
+  GradTableLabelText,
+  GradTableRow,
+} from "./GradientPhaseForm.styled";
 import Modal from "../../Modal/Modal";
 import { CustomKeyboard } from "../../CustomKeyboard/CustomKeyboard";
+import { FormBtn } from "../BtnForm/BtnForm.styled";
 
 export const GradientPhaseForm = ({
   step,
@@ -11,11 +18,12 @@ export const GradientPhaseForm = ({
   setMobPhaseForm,
 }) => {
   const [gradTable, setGradTable] = useState({
-    time: [0, 1, 2, 3],
-    a: [50, 40],
+    idKey: [0],
+    time: [0],
+    a: [50],
     b: [50],
-    c: [100],
-    d: [],
+    c: [0],
+    d: [0],
     flow: [1],
   });
   let firsRender = true;
@@ -46,63 +54,107 @@ export const GradientPhaseForm = ({
     }
     let newArr = [...gradTable[keyboardValue.name]];
     newArr.splice(keyboardValue.id, 1, keyboardValue.number);
-    console.log(newArr);
     setGradTable((prev) => ({
       ...prev,
       [keyboardValue.name]: [...newArr],
     }));
   }, [keyboardValue]);
 
+  const handleAddRow = () => {
+    let newArrIdKey = [...gradTable.idKey];
+    const addArg = newArrIdKey[newArrIdKey.length - 1] + 1;
+    let newArrTime = [...gradTable.time];
+    let newArrA = [...gradTable.a];
+    let newArrB = [...gradTable.b];
+    let newArrC = [...gradTable.c];
+    let newArrD = [...gradTable.d];
+    let newArrFlow = [...gradTable.flow];
+
+    setGradTable((prev) => ({
+      idKey: [...newArrIdKey, addArg],
+      time: [...prev.time, 0],
+      a: [...prev.a, 0],
+      b: [...prev.b, 0],
+      c: [...prev.c, 0],
+      d: [...prev.d, 0],
+      flow: [...prev.flow, 1],
+    }));
+
+    //  console.log(gradTable);
+  };
+
+  const handleDeleteRow = () => {
+    const arrIdKey = [...gradTable.idKey];
+    const delArgIdx = arrIdKey.length - 1;
+    const newArrIdkey = arrIdKey.slice(0, delArgIdx);
+    //   console.log(newArrIdkey);
+    setGradTable((prev) => ({
+      idKey: [...newArrIdkey],
+      time: [...prev.time.slice(0, delArgIdx)],
+      a: [...prev.a.slice(0, delArgIdx)],
+      b: [...prev.b.slice(0, delArgIdx)],
+      c: [...prev.c.slice(0, delArgIdx)],
+      d: [...prev.d.slice(0, delArgIdx)],
+      flow: [...prev.flow.slice(0, delArgIdx)],
+    }));
+  };
+
+  useEffect(() => {
+    console.log(gradTable);
+  }, [gradTable]);
+
   return (
     <div>
       <form>
-        {gradTable.time.map((item) => {
-          const idx = gradTable.time.indexOf(item);
-          if (!gradTable.a[idx]) {
-            if (gradTable.a[idx - 1]) {
-              gradTable.a.push(gradTable.a[idx - 1]);
-            } else {
-              gradTable.a.push(0);
-            }
-          }
-          if (!gradTable.b[idx]) {
-            if (gradTable.b[idx - 1]) {
-              gradTable.b.push(gradTable.b[idx - 1]);
-            } else {
-              gradTable.b.push(0);
-            }
-          }
-          if (!gradTable.c[idx]) {
-            if (gradTable.c[idx - 1]) {
-              gradTable.c.push(gradTable.c[idx - 1]);
-            } else {
-              gradTable.c.push(0);
-            }
-          }
-          if (!gradTable.d[idx]) {
-            if (gradTable.d[idx - 1]) {
-              gradTable.d.push(gradTable.d[idx - 1]);
-            } else {
-              gradTable.d.push(0);
-            }
-          }
-          if (!gradTable.flow[idx]) {
-            gradTable.flow.push(gradTable.flow[idx - 1]);
-          }
+        {gradTable.idKey.map((item) => {
+          const idx = gradTable.idKey.indexOf(item);
+          //  if (!gradTable.a[idx]) {
+          //    console.log(gradTable.a[idx]);
+          //    if (gradTable.a[idx - 1]) {
+          //      console.log("if work");
+          //      gradTable.a.push(gradTable.a[idx - 1]);
+          //    } else {
+          //      gradTable.a.push(0);
+          //    }
+          //  }
+          //  if (!gradTable.b[idx]) {
+          //    if (gradTable.b[idx - 1]) {
+          //      gradTable.b.push(gradTable.b[idx - 1]);
+          //    } else {
+          //      gradTable.b.push(0);
+          //    }
+          //  }
+          //  if (!gradTable.c[idx]) {
+          //    if (gradTable.c[idx - 1]) {
+          //      gradTable.c.push(gradTable.c[idx - 1]);
+          //    } else {
+          //      gradTable.c.push(0);
+          //    }
+          //  }
+          //  if (!gradTable.d[idx]) {
+          //    if (gradTable.d[idx - 1]) {
+          //      gradTable.d.push(gradTable.d[idx - 1]);
+          //    } else {
+          //      gradTable.d.push(0);
+          //    }
+          //  }
+          //  if (!gradTable.flow[idx]) {
+          //    gradTable.flow.push(gradTable.flow[idx - 1]);
+          //  }
           return (
             <GradTableRow key={item}>
               <lable>
-                {idx === 0 && <p>Time</p>}
+                {idx === 0 && <GradTableLabelText>Time</GradTableLabelText>}
                 <GradTableInput
                   id={idx}
                   name="time"
                   inputMode="none"
-                  value={item}
+                  value={gradTable.time[idx]}
                   onFocus={handleFocusInput}
                 />
               </lable>
               <lable>
-                {idx === 0 && <p>A</p>}
+                {idx === 0 && <GradTableLabelText>A</GradTableLabelText>}
                 <GradTableInput
                   id={idx}
                   name="a"
@@ -112,7 +164,7 @@ export const GradientPhaseForm = ({
                 />
               </lable>
               <lable>
-                {idx === 0 && <p>B</p>}
+                {idx === 0 && <GradTableLabelText>B</GradTableLabelText>}
                 <GradTableInput
                   id={idx}
                   name="b"
@@ -122,7 +174,7 @@ export const GradientPhaseForm = ({
                 />
               </lable>
               <lable>
-                {idx === 0 && <p>C</p>}
+                {idx === 0 && <GradTableLabelText>C</GradTableLabelText>}
                 <GradTableInput
                   id={idx}
                   name="c"
@@ -132,7 +184,7 @@ export const GradientPhaseForm = ({
                 />
               </lable>
               <lable>
-                {idx === 0 && <p>D</p>}
+                {idx === 0 && <GradTableLabelText>D</GradTableLabelText>}
                 <GradTableInput
                   id={idx}
                   name="d"
@@ -142,7 +194,7 @@ export const GradientPhaseForm = ({
                 />
               </lable>
               <lable>
-                {idx === 0 && <p>Flow</p>}
+                {idx === 0 && <GradTableLabelText>Flow</GradTableLabelText>}
                 <GradTableInput
                   id={idx}
                   name="flow"
@@ -154,6 +206,14 @@ export const GradientPhaseForm = ({
             </GradTableRow>
           );
         })}
+        <GradBtnBox>
+          <GradTableBtn type="button" onClick={handleAddRow}>
+            Add row
+          </GradTableBtn>
+          <GradTableBtn type="button" onClick={handleDeleteRow}>
+            Delete row
+          </GradTableBtn>
+        </GradBtnBox>
         <BtnForm step={step} setStep={setStep} />
       </form>
       {showModal && (

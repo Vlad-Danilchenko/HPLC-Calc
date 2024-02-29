@@ -145,7 +145,14 @@ export const SecondStepForm = ({
         </form>
       )}
 
-      {mobPhaseForm.typeOfFlow === "gradient" && <GradientPhaseForm />}
+      {mobPhaseForm.typeOfFlow === "gradient" && (
+        <GradientPhaseForm
+          setStep={setStep}
+          step={step}
+          mobPhaseForm={mobPhaseForm}
+          setMobPhaseForm={setMobPhaseForm}
+        />
+      )}
 
       {showModal && (
         <Modal isOpen={toggleModal}>

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { StyledLabel } from "../../WaterCounter/WaterCounter.styled";
+import { FormBtn } from "../BtnForm/BtnForm.styled";
 
 export const GradTableRow = styled.div`
   margin-bottom: 2px;
@@ -19,4 +21,27 @@ export const GradTableInput = styled.input`
 
   color: #908d90;
   background: #fbf4f4;
+`;
+
+export const GradTableLabelText = styled.p`
+  color: #fffbff;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.125;
+
+  margin-bottom: 4px;
+`;
+
+export const GradBtnBox = styled.div`
+  text-align: center;
+  padding: -4px;
+  padding-top: 8px;
+`;
+
+export const GradTableBtn = styled(FormBtn)`
+  font-size: 18px;
+  padding: 4px;
+  margin: 4px;
 `;
