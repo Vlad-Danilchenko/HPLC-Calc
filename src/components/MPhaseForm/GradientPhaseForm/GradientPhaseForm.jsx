@@ -10,6 +10,14 @@ import {
 import Modal from "../../Modal/Modal";
 import { CustomKeyboard } from "../../CustomKeyboard/CustomKeyboard";
 import { FormBtn } from "../BtnForm/BtnForm.styled";
+import {
+  BorderForm,
+  BorderLable,
+} from "../SecondStepForm/SecondStepForm.styled";
+import {
+  InputFirstStepForm,
+  LableMPhForm,
+} from "../FirstStepForm/FirstStepForm.styled";
 
 export const GradientPhaseForm = ({
   step,
@@ -26,6 +34,7 @@ export const GradientPhaseForm = ({
     d: [0],
     flow: [1],
   });
+  const [numberOfImpRS, setNumberOfImpRS] = useState(0);
   let firsRender = true;
 
   const [keyboardValue, setKeyboardValue] = useState({
@@ -52,23 +61,21 @@ export const GradientPhaseForm = ({
     if (firsRender) {
       return;
     }
-    let newArr = [...gradTable[keyboardValue.name]];
-    newArr.splice(keyboardValue.id, 1, keyboardValue.number);
-    setGradTable((prev) => ({
-      ...prev,
-      [keyboardValue.name]: [...newArr],
-    }));
+    if (keyboardValue.name === "numberOfImpRS") {
+      setNumberOfImpRS(keyboardValue.number);
+    } else {
+      let newArr = [...gradTable[keyboardValue.name]];
+      newArr.splice(keyboardValue.id, 1, keyboardValue.number);
+      setGradTable((prev) => ({
+        ...prev,
+        [keyboardValue.name]: [...newArr],
+      }));
+    }
   }, [keyboardValue]);
 
   const handleAddRow = () => {
     let newArrIdKey = [...gradTable.idKey];
     const addArg = newArrIdKey[newArrIdKey.length - 1] + 1;
-    let newArrTime = [...gradTable.time];
-    let newArrA = [...gradTable.a];
-    let newArrB = [...gradTable.b];
-    let newArrC = [...gradTable.c];
-    let newArrD = [...gradTable.d];
-    let newArrFlow = [...gradTable.flow];
 
     setGradTable((prev) => ({
       idKey: [...newArrIdKey, addArg],
@@ -106,6 +113,22 @@ export const GradientPhaseForm = ({
   return (
     <div>
       <form>
+        {mobPhaseForm.exponent.includes("impurity") && (
+          <BorderForm>
+            <BorderLable>Impurity</BorderLable>
+            <LableMPhForm>
+              Вкажи к-сть RS на домішки (шт):
+              <InputFirstStepForm
+                name="numberOfImpRS"
+                type="number"
+                inputMode="none"
+                onFocus={handleFocusInput}
+                value={gradTable.numberOfImpRS}
+              />
+            </LableMPhForm>
+          </BorderForm>
+        )}
+
         {gradTable.idKey.map((item) => {
           const idx = gradTable.idKey.indexOf(item);
           //  if (!gradTable.a[idx]) {
