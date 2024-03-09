@@ -9,7 +9,6 @@ import {
 } from "./GradientPhaseForm.styled";
 import Modal from "../../Modal/Modal";
 import { CustomKeyboard } from "../../CustomKeyboard/CustomKeyboard";
-import { FormBtn } from "../BtnForm/BtnForm.styled";
 import {
   BorderForm,
   BorderLable,
@@ -106,13 +105,19 @@ export const GradientPhaseForm = ({
     }));
   };
 
-  useEffect(() => {
-    console.log(gradTable);
-  }, [gradTable]);
-
   return (
     <div>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setStep("finish");
+          setMobPhaseForm((prev) => ({
+            ...prev,
+            ...gradTable,
+            numberOfImpRS,
+          }));
+        }}
+      >
         {mobPhaseForm.exponent.includes("impurity") && (
           <BorderForm>
             <BorderLable>Impurity</BorderLable>
@@ -123,7 +128,7 @@ export const GradientPhaseForm = ({
                 type="number"
                 inputMode="none"
                 onFocus={handleFocusInput}
-                value={gradTable.numberOfImpRS}
+                value={numberOfImpRS}
               />
             </LableMPhForm>
           </BorderForm>
