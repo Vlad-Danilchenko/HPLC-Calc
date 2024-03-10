@@ -136,39 +136,6 @@ export const GradientPhaseForm = ({
 
         {gradTable.idKey.map((item) => {
           const idx = gradTable.idKey.indexOf(item);
-          //  if (!gradTable.a[idx]) {
-          //    console.log(gradTable.a[idx]);
-          //    if (gradTable.a[idx - 1]) {
-          //      console.log("if work");
-          //      gradTable.a.push(gradTable.a[idx - 1]);
-          //    } else {
-          //      gradTable.a.push(0);
-          //    }
-          //  }
-          //  if (!gradTable.b[idx]) {
-          //    if (gradTable.b[idx - 1]) {
-          //      gradTable.b.push(gradTable.b[idx - 1]);
-          //    } else {
-          //      gradTable.b.push(0);
-          //    }
-          //  }
-          //  if (!gradTable.c[idx]) {
-          //    if (gradTable.c[idx - 1]) {
-          //      gradTable.c.push(gradTable.c[idx - 1]);
-          //    } else {
-          //      gradTable.c.push(0);
-          //    }
-          //  }
-          //  if (!gradTable.d[idx]) {
-          //    if (gradTable.d[idx - 1]) {
-          //      gradTable.d.push(gradTable.d[idx - 1]);
-          //    } else {
-          //      gradTable.d.push(0);
-          //    }
-          //  }
-          //  if (!gradTable.flow[idx]) {
-          //    gradTable.flow.push(gradTable.flow[idx - 1]);
-          //  }
           return (
             <GradTableRow key={item}>
               <lable>
