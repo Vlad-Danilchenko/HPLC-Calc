@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { MPhContainer } from "../MPhaseForm.styled";
-import { BtnForm } from "../BtnForm/BtnForm";
 import { ResultText } from "./IsoCalculation.styled";
+import { MPhContainer } from "../../MPhaseForm/MPhaseForm.styled";
+import { BtnForm } from "../../MPhaseForm/BtnForm/BtnForm";
 
 export const IsoCalculation = ({
   mobPhaseForm,
@@ -10,7 +10,7 @@ export const IsoCalculation = ({
   setStep,
 }) => {
   const [result, setResult] = useState(0);
-  const [sumInj, setSumInj] = useState(0);
+
   let firsRender = true;
   const {
     exponent,
@@ -33,9 +33,6 @@ export const IsoCalculation = ({
   const realShortTime = timeOfShortRS + 1.5;
   const realLongTime = timeOfLongRS + 1.5;
   const realImpTime = timeOfTS + 1.5;
-  const assayNumberOfInj = (numberOfSeries) => {
-    const sum = rs * 2 + assayTs * numberOfSeries;
-  };
 
   useEffect(() => {
     firsRender = !firsRender;
@@ -72,11 +69,11 @@ export const IsoCalculation = ({
   }, []);
 
   return (
-    <MPhContainer>
+    <>
       <ResultText>
         Мінімальна к-сть фази для експерименту: {result} мл.
       </ResultText>
-      <BtnForm step={step} setStep={setStep} />
-    </MPhContainer>
+      {/* <BtnForm step={step} setStep={setStep} /> */}
+    </>
   );
 };

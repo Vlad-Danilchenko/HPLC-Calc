@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MPhaseForm } from "../../components/MPhaseForm/MPhaseForm";
-import { IsoCalculation } from "../../components/MPhaseForm/IsoCalculation/IsoCalculation";
+import { MPhaseResult } from "../../components/MPhaseResult/MPhaseResult";
 
 export const MobPhasePage = () => {
   const [mobPhaseForm, setMobPhaseForm] = useState({});
@@ -19,7 +19,7 @@ export const MobPhasePage = () => {
         />
       )}
       {step === "finish" && (
-        <IsoCalculation
+        <MPhaseResult
           setStep={setStep}
           step={step}
           mobPhaseForm={mobPhaseForm}

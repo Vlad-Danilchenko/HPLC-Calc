@@ -60,7 +60,7 @@ export const FirstStepForm = ({
           setMobPhaseForm((prev) => ({
             ...prev,
             exponent: [...exponentArray],
-            typeOfFlow: "isocratic",
+            // typeOfFlow: "isocratic",
           }));
         }}
       >
@@ -83,11 +83,10 @@ export const FirstStepForm = ({
               name="typeOfFlow"
               value="isocratic"
               onChange={handleChange}
-              checked
             />
             Isocratic
           </LableMPhForm>
-          {/* <LableMPhForm>
+          <LableMPhForm>
             <input
               type="radio"
               name="typeOfFlow"
@@ -95,7 +94,7 @@ export const FirstStepForm = ({
               onChange={handleChange}
             />
             Gradient
-          </LableMPhForm> */}
+          </LableMPhForm>
         </div>
         <FormText>Вибери з переліку свої показники:</FormText>
         <LableMPhForm>
